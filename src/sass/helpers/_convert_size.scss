@@ -1,0 +1,105 @@
+html {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+
+    @media only screen and (max-width: 1024px){
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    clear: both;
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+}
+
+a:focus,
+a:active,
+a:hover {
+    outline: 0;
+}
+
+p {
+    padding: 0;
+    margin: 0
+}
+
+img, figure, legend, fieldset {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    resize: none;
+}
+
+input, button, select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+       -moz-appearance: checkbox;
+          	appearance: checkbox;
+}
+
+input[type="radio"] {
+    -webkit-appearance: radio;
+       -moz-appearance: radio;
+          	appearance: radio;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+	padding: 0;
+}
+
+/* ul, ol, li {
+    margin: 0;
+    padding: 0;
+    list-style: none
+} */

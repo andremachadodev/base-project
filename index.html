@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<title>Project Name</title>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="pragma" content="no-cache">
+
+	<!-- Compatible mode: https://msdn.microsoft.com/pt-br/library/cc288325(v=vs.85).aspx -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- SEO: https://yoast.com/articles/robots-meta-tags/ -->
+	<meta name="description" content="">
+	<meta name="robots" content="index, follow, noodp">
+	<meta name="author" content="autor@autor.com.br">
+
+	<!-- General mobile features:
+			https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+			https://developer.mozilla.org/en/Mobile/Viewport_meta_tag
+	-->
+	<meta name="viewport" content="minimum-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="">
+  <meta name="format-detection" content="telephone=no">
+
+    <!-- FB Opengraph: https://developers.facebook.com/docs/sharing/best-practices -->
+	<meta property="og:title" content="">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="">
+	<meta property="og:image" content="">
+	<meta property="og:site_name" content="">
+	<meta property="og:description" content="">
+
+	<!-- Twitter card: https://dev.twitter.com/cards/overview -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:url" content="">
+	<meta name="twitter:title" content="">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:image" content="">
+
+  <!-- Icons -->
+  <meta name="msapplication-square70x70logo" content="dist/favicons/windows-tile-70x70.png">
+	<meta name="msapplication-square150x150logo" content="dist/favicons/windows-tile-150x150.png">
+	<meta name="msapplication-square310x310logo" content="dist/favicons/windows-tile-310x310.png">
+	<meta name="msapplication-TileImage" content="dist/favicons/windows-tile-144x144.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="dist/favicons/apple-touch-icon-152x152-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="dist/favicons/apple-touch-icon-120x120-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="dist/favicons/apple-touch-icon-76x76-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="dist/favicons/apple-touch-icon-60x60-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="dist/favicons/apple-touch-icon-144x144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="dist/favicons/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="dist/favicons/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="dist/favicons/apple-touch-icon.png">
+
+	<link rel="icon" sizes="228x228" href="dist/favicons/coast-icon-228x228.png">
+	<link rel="shortcut icon" href="dist/favicons/favicon.ico">
+	<link rel="icon" type="image/png" sizes="64x64" href="dist/favicons/favicon.png">
+
+	<!-- Modernizr -->
+	<script src="bower_src/modernizr/modernizr.js"></script>
+
+	<link rel="stylesheet" href="dist/css/app.css?t=0.1" media="all">
+</head>
+<body>
+	
+	<div ng-view></div>
+
+	<!-- FB root -->
+	<div id="fb-root"></div>
+
+	<!-- SCRIPT init -->
+	<script src="bower_src/angular/angular.js"></script>
+	<script src="bower_src/angular-route/angular-route.js"></script>
+	<script src="bower_src/angular-animate/angular-animate.js"></script>
+	<script src="bower_src/angular-touch/angular-touch.js"></script>
+
+	<!--script src="dist/js/vendors.js"></script-->
+	<script src="dist/js/app.js"></script>
+	<script src="dist/js/modules.js"></script>
+</body>
+</html>
+
