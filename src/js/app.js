@@ -27,14 +27,20 @@ App.config(['CONFIG', '$routeProvider', '$httpProvider', '$locationProvider', fu
       {templateUrl: CONFIG.views + 'error/index.html', controller: 'Error'}
     )
 
-    // Default
+    /*
+      * 'xpto' is a fake route.
+
+      * Why???
+        * Let's go: if user call a absent section the route will call the 'xpto' describe on below otherwise condition.
+        * AuthInterceptor will take 404 error because 'xpto' not have, the flow will changed calling /error section and passing status and statusText
+        * The /error page showing the cause of error and a button to continue flow
+    */
     .when(
       '/xpto',
       {templateUrl: 'xpto.html'}
     )
-    
     .otherwise({
-      redirectTo: '/xpto' // Causing error that taked by interceptor, then will call erro page passing status code
+      redirectTo: '/xpto'
     });
 
 }]);
