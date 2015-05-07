@@ -67,37 +67,11 @@ module.exports = function(grunt){
 			}
 		},
 
-		/*imagemin: {
-			png: {
-				options: {
-					optimizationLevel: 1
-				},
-				files: [{
-					expand: true,
-					cwd: '../../assets/img/',
-					src: ['** /*.png'],
-					dest: '../../dist/'
-				}]
-			},
-
-			jpg: {
-				options: {
-					progressive: true
-				},
-				files: [{
-					expand: true,
-					cwd: '../../assets/img/',
-					src: ['** /*.jpg'],
-					dest: '../../assets/img/dist/'
-				}]
-			}
-		},*/
-
 		webfont: {
 		    icons: {
 		    	src: '<%= paths.src %>svg/*.svg',
-		        dest: '<%= paths.dist %>fonts',
-		        destCss: '<%= paths.dist %>fonts'
+		        dest: '<%= paths.dist %>fonts/',
+		        destCss: '<%= paths.dist %>fonts/'
 		    }
 		},
 
@@ -141,31 +115,29 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  /*grunt.loadNpmTasks('grunt-contrib-imagemin');*/
   grunt.loadNpmTasks('grunt-webfont');
   grunt.loadNpmTasks('grunt-favicons');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Run when start works will be create scripts of vendors and component, font-icon's, favicons and any others stuffs
+  // Run on start development
   grunt.registerTask(
   	'default', [
   		'compass',
-  		/*'jshint',*/
+  		'jshint',
 	 		'concat',
 			'webfont',
 		  'favicons'
     ]
   );
 
-  // Run on build, and ONLY on build
+  // Run on build
   grunt.registerTask(
   	'prod', [
-	 		/*'jshint',*/
+	 		'jshint',
 	 		'compass',
 	 		'concat',
-	 		'uglify'/*,
-	 		'imagemin'*/
+	 		'uglify'
 	 	]
 	);
 };

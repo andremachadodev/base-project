@@ -1,57 +1,59 @@
-var App = angular.module('app', ['ngRoute', 'ngAnimate', 'ngTouch', 'appDirectives', 'appHelpers']);
+var App = angular.module('app', ['ngRoute', 'ngAnimate', 'ngTouch', 'Directives', 'Helpers', 'Interceptors']);
 
-App.constant("PATH", {
-  "api": "../../mockdata/",
-  "views": "../../views/"
+App.constant("CONFIG", {
+  "api": "../mockdata/",
+  "views": "../views/",
+  "session_ns": "Sess"
 });
 
-App.config(['PATH', '$routeProvider', '$locationProvider', function(PATH, $routeProvider, $locationProvider){
+App.config(['CONFIG', '$routeProvider', '$httpProvider', '$locationProvider', function(CONFIG, $routeProvider, $httpProvider, $locationProvider){
+
+  $httpProvider.interceptors.push('AuthInterceptor');
 
   $routeProvider
     // Access
     .when(
       '/',
-      {templateUrl: PATH.views + 'home/index.html', controller: 'Home'}
+      {templateUrl: CONFIG.views + 'foo/index.html', controller: 'Foo'}
+    )
+    .when(
+      '/foo',
+      {templateUrl: CONFIG.views + 'foo/index.html', controller: 'Foo'}
     )
 
-    // Error handlers
+    // Error page
     .when(
-      '/404',
-      {templateUrl: PATH.views + 'handlers/404.html', controller: 'ErrorHandler'}
+      '/error/:status',
+      {templateUrl: CONFIG.views + 'error/index.html', controller: 'Error'}
     )
+
+    // Default
     .when(
-      '/401',
-      {templateUrl: PATH.views + 'handlers/401.html', controller: 'ErrorHandler'}
+      '/xpto',
+      {templateUrl: 'xpto.html'}
     )
-    .when(
-      '/405',
-      {templateUrl: PATH.views + 'handlers/405.html', controller: 'ErrorHandler'}
-    )
-    .when(
-      '/500',
-      {templateUrl: PATH.views + 'handlers/500.html', controller: 'ErrorHandler'}
-    )
+    
     .otherwise({
-      redirectTo: '/404'
+      redirectTo: '/xpto' // Causing error that taked by interceptor, then will call erro page passing status code
     });
 
 }]);
 
-App.run(function($rootScope){
+App.run(function($rootScope, $location){
   $rootScope.$on("$routeChangeStart", function(event, next, current){
-    console.log('ROUTE CHANGE START', event, next, current);
+    //console.log('ROUTE CHANGE START', $location.$$path);
   });
 
   $rootScope.$on("$routeChangeSuccess", function(){
-    console.log('ROUTE CHANGE SUCCESS');
+    //console.log('ROUTE CHANGE SUCCESS');
   });
 
   $rootScope.$on('$viewContentLoaded', function(scope){
-    console.log('VIEW CONTENT LOADED');
+    //console.log('VIEW CONTENT LOADED');
   });
 
   $rootScope.$on("$routeChangeError", function(){
-    console.log('ROUTE CHANGE ERROR');
+    //console.log('ROUTE CHANGE ERROR');
   });
 });
 
