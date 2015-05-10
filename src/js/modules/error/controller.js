@@ -1,7 +1,6 @@
 (function(window, angular, undefined) {'use strict';
 
-  App.controller('Error', ['$scope', '$routeParams', function($scope, $routeParams){
-
+  var Error = ['$scope', '$routeParams', function($scope, $routeParams){
     if($routeParams.status){
       $scope.status = $routeParams.status;
     }else{
@@ -56,9 +55,11 @@
         case 505:
           // Http version is not supported
           break;
-
       }
+  }];
 
-  }]);
+  angular
+    .module('app')
+    .controller('Error', Error);
 
 })(window, window.angular);

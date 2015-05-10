@@ -1,15 +1,14 @@
-(function(window, angular, undefined) {'use strict';
+(function(window, angular, undefined) {
+  'use strict';
 
-  var Helpers = angular.module('Helpers', []);
-
-  Helpers.factory('UserSession', ['$location', 'Storage', 'CONFIG', function($location, Storage, CONFIG){
+  var UserSession = ['$location', 'Storage', 'CONFIG', function($location, Storage, CONFIG){
     var _this = this;
 
     var sess_name           = CONFIG.session_ns, // Prefix of session storage object
-        forbidden_has_loged = ['login', 'account-validate'], // Forbiden section if has loged
+        forbidden_has_loged = ['login', 'recover-password', 'account-validate'], // Forbiden section if has loged
         login_section       = '/login', // Login section...
         start_section       = '/dashboard', // Starting section after login or access site loged
-        expire_section      = '/expired'; // When expire the token
+        expire_section      = '/error/expired'; // When expire the token
 
     _this.Data = null;
 
@@ -31,6 +30,8 @@
       if( Storage.Get(sess_name)!==null ){
         _this.Data = data;
       }
+
+      $location.path(start_section);
 
       console.info('UserSession - Create: The storage '+sess_name+' was created.', Storage.Get(sess_name));
     };
@@ -61,22 +62,24 @@
     };
 
     _this.Check = function(obj_rejected){
-      var section     = $location.$$path.split('/')[1],
-          sub_section = $location.$$path.split('/')[2];
+      var section    = $location.$$path.split('/')[1],
+          session_ok = false;
+
+      var loged = false;
 
       _this.Message = 'Fatiou, passou!';
 
       if( Storage.Get(sess_name) ){ // Existe sessão
         _this.PopulateData();
 
-        if( new Date().getTime() > Storage.Get(sess_name).user_token_expire ){ // Está expirada
+        if( new Date().getTime() > Storage.Get(sess_name).user_token_expire ){
           _this.Message = 'Token expired.';
 
           _this.Delete();
 
           $location.path(expire_section);
 
-        }else if(forbidden_has_loged.join(',').indexOf(section) >= 0){ // Está em uma seção proibida para usuário logado
+        }else if(forbidden_has_loged.join(',').indexOf(section) >= 0){
           _this.Message = 'Unauthorized section for user has loged.';
 
           if(typeof obj_rejected === 'function'){
@@ -87,7 +90,9 @@
 
         }
 
-      }else if( forbidden_has_loged.join(',').indexOf(section) == -1 ){ // Não está logado e está numa seção proibida
+        session_ok = true;
+
+      }else if( forbidden_has_loged.join(',').indexOf(section) == -1 ){
         _this.Message = 'Unauthorized section for user non loged.';
 
         if(typeof obj_rejected === 'function'){
@@ -100,19 +105,17 @@
 
       console.info('UserSession Check: ', _this.Message);
 
-      return true;
+      return( session_ok );
     };
 
-    return _this;
+    return( _this );
+  }];
 
-  }]);
-
-
-  Helpers.factory('Storage', [function(){
+  var Storage = [function(){
     var _this = this;
 
     _this.Get = function(name){
-      return JSON.parse( window.localStorage.getItem(name) );
+      return( JSON.parse( window.localStorage.getItem(name) ) );
     };
 
     _this.Set = function(name, value){
@@ -126,7 +129,7 @@
 
     _this.Remove = function(param){
       if(!(param instanceof Array) && typeof param !== 'string' ){
-        return false;
+        return( false);
       }
 
       if(param instanceof Array){
@@ -140,29 +143,19 @@
       }
     };
 
-    return _this;
+    return( _this );
+  }];
 
-  }]);
-
-
-  Helpers.factory('Date', [function(){
-
-    // 
-
-    return _this;
-
-  }]);
-
-  Helpers.factory('Loader', ['$timeout', function($timeout){
-
+  var Loader = ['$timeout', function($timeout){
     var _this = this;
 
     _this.Settings = {
-      id: 'loader_' + new Date().getMilliseconds(),
+      id: null,
       y: 0,
       x: 0,
       className: ' ',
       parent: document.querySelector('body'),
+      el: null,
       originalSettings: null,
       callback: null,
       callbackStart: null,
@@ -173,12 +166,15 @@
         position_type = _this.Settings.parent.tagName.toLowerCase() != 'body' ? 'relative' : '';
 
     _this.Start = function(callback){
-      var buffer = '<div id="'+_this.Settings.id+'" class="loader ' + _this.Settings.className +' show" style="top: '+ _this.Settings.y +'px; left: '+ _this.Settings.x +'px">  </div>';
+      _this.Settings.id = 'loader_' + new Date().getTime();
+
+      console.log( 'Start: ', _this.Settings.id );
+
+      var buffer = '<div id="'+_this.Settings.id+'" class="loader ' + _this.Settings.className +' show" style="top: '+ _this.Settings.y + (_this.Settings.y.toString().indexOf('%')!=-1 ? '' : 'px') +'; left: '+ _this.Settings.x + (_this.Settings.x.toString().indexOf('%')!=-1 ? '' : 'px') +'">  </div>';
 
       angular.element( _this.Settings.parent ).css('position', position_type).append(buffer);
 
-      var el    = document.querySelector( '#'+_this.Settings.id );
-          ng_el = angular.element( el );
+      _this.Settings.ng_el = angular.element( document.querySelector( '#'+_this.Settings.id ) );
 
       if(typeof _this.Settings.callbackStart === 'function'){
         _this.Settings.callbackStart();
@@ -186,41 +182,38 @@
     };
 
     _this.End = function(callback){
-      ng_el.removeClass('show');
+      _this.Settings.ng_el.remove();
 
-      $timeout(function(){
-        ng_el.remove();
-
-        if(typeof _this.Settings.callbackEnd === 'function'){
-          _this.Settings.callbackEnd();
-        }
-      }, 300);
+      if(typeof _this.Settings.callbackEnd === 'function'){
+        _this.Settings.callbackEnd();
+      }
     };
 
     if(typeof _this.Settings.callback === 'function'){
       _this.Settings.callback(_this);
     }
 
-    return _this;
+    //return( _this );
+  }];
 
-  }]);
+  var DateHandler = [function(){
+    return( _this );
+  }];
 
-  Helpers.factory('ImageQueue', [function(){
+  var ImageQueue = function(){
+    return( _this );
+  };
 
-    // 
+  var Modal = function(){
+    return( _this );
+  };
 
-    return _this;
-
-  }]);
-
-
-  Helpers.factory('Modal', [function(){
-
-    // 
-
-    return _this;
-
-  }]);
+  angular
+    .module('Helpers', [])
+    .factory('UserSession', UserSession)
+    .factory('Storage', Storage)
+    .factory('DateHandler', DateHandler)
+    .service('Loader', Loader);
 
 })(window, window.angular);
 

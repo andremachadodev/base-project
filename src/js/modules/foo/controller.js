@@ -1,9 +1,11 @@
 (function(window, angular, undefined) {'use strict';
 
-  App.controller('Foo', ['$scope', function($scope){
+  var Foo = ['$scope', function($scope){
+    // Foo
+  }]
 
-    // Foo!
-
-  }]);
+  angular
+    .module('app')
+    .controller('Foo', Foo);
 
 })(window, window.angular);
