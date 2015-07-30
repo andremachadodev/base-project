@@ -65,14 +65,14 @@ Our base-project have package.json and Gruntfile.js files previously configured,
 
 **We have three tasks pre configured:**
 
-  *grunt default: Called on start of development. They create the favicons, call compass in one single time, jshint, etc
-  *grunt watch: Called after task default and will listen any change on js and scss, triggering jshint, concatenate and uglify these files
-  *grunt prod: Called only on deploy to production enviroment
+  **grunt default:** Called on start of development. They create the favicons, call compass in one single time, jshint, etc
+  **grunt watch:** Called after task default and will listen any change on js and scss, triggering jshint, concatenate and uglify these files
+  **grunt prod:** Called only on deploy to production enviroment
 
 **By default, use it:**
 
-  grunt default: On first moment of work
-  grunt watch: After that and always that starting the work
+  **grunt default:** On first moment of work
+  **grunt watch:** After that and always that starting the work
 
 ###Compass
 
