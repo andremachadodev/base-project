@@ -27,29 +27,31 @@ This project use as a dependencie follow third party projects:
 
 [https://www.npmjs.com/](https://www.npmjs.com/)
 
-###Bower [http://bower.io/](http://bower.io/)
+###Bower
+
+[http://bower.io/](http://bower.io/)
 
 It’s our choice for script dependencies manager, follow to install:
 
-<addr>npm install -g bower</addr>
+<code>npm install -g bower</code>
 
 To start the new bower project and create a bower.json file (unusual in our context, because the bower.json are created will bring with repository)
 
-<addr>bower init</addr>
+<code>bower init</code>
 
 To list all dependencies already in our bower.json file:
 
-<addr>bower list</addr>
+<code>bower list</code>
 
 To install dependencies already in our bower.json file:
 
-<addr>bower install</addr>
+<code>bower install</code>
 
 To install a new packege, follow:
 
-<addr>bower install <package-name> —save-dev</addr>
+<code>bower install <package-name> —save-dev</code>
 
-e.g: <addr>bower install jquery</addr>
+e.g: <code>bower install jquery</code>
 
 *.bowerrc file is used to apointing the destination folder of scripts downloaded by bower, in our case, appoint to bower_src on root project
 
@@ -57,7 +59,7 @@ e.g: <addr>bower install jquery</addr>
 
 It’s our choice for task manager, follow to install:
 
-<addr>npm install -g grunt-cli</addr>
+<code>npm install -g grunt-cli</code>
 
 Our base-project have package.json and Gruntfile.js fles previously configured, but, in case of need, just click here <[http://gruntjs.com/getting-started](http://gruntjs.com/getting-started)> and enjoy.
 
@@ -72,7 +74,9 @@ Our base-project have package.json and Gruntfile.js fles previously configured, 
   grunt default: On first moment of work
   grunt watch: After that and always on start work on the project
 
-###Compass [http://compass-style.org/](http://compass-style.org/)
+###Compass
+
+[http://compass-style.org/](http://compass-style.org/)
 
 Our choice to boost the good and old css, compass is a sass framework to improve work of css.
 
