@@ -1,0 +1,23 @@
+/*=
+    Setting up style to placeholder form field
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+@mixin input_placeholder(){
+  ::-webkit-input-placeholder {
+     @content
+  }
+
+  :-moz-placeholder {
+     @content
+  }
+
+  ::-moz-placeholder {
+     @content
+  }
+
+  :-ms-input-placeholder {  
+     @content
+  }
+}

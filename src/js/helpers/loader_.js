@@ -1,13 +1,6 @@
-(function(window, angular, undefined) {
-  'use strict';
 
-  /** 
-   * Create a loader icon to sinalize a request or lazzy any operation
-   * 
-   * @author Andre Machado
-   * @lastupdate Andre Machado
-   */
-  var Loader = ['$timeout', function($timeout){
+
+  var Loader = function(){
     var _this = this;
 
     _this.Settings = {
@@ -73,15 +66,7 @@
     if(typeof _this.Settings.callback === 'function'){
       _this.Settings.callback(_this);
     }
-
-    //return( _this );
-  }];
-
-  angular
-    .module('app')
-    .service('Loader', Loader);
-
-})(window, window.angular);
+  };
 
 
 

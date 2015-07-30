@@ -19,8 +19,12 @@
     };
 
     _this.Update = function(name, value){
+      console.log('Update: ', name, value);
+
       window.localStorage.removeItem(name);
       window.localStorage.setItem(name, JSON.stringify(value));
+
+
     };
 
     _this.Remove = function(param){

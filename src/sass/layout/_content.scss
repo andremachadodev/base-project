@@ -5,19 +5,55 @@
     @author Andre Machado <andre@eov.ae>
 */
 .wrap {
-  position: relative;
+  @include transition(transform .2s $easing);
+  position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
   z-index: 2;
   width: 100%;
-  background: #e1eaea;
-  @include transition(transform .2s $easing)
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  background: #e1eaea
 }
 
-html.nav_opened {
-  overflow: hidden !important
+.wrap [ui-view] {
+  display: block;
+  width: $app_width;
+  margin: 0 auto
 }
 
-html.nav_opened .wrap {
-  @include transform(translateX(20%))
+[ui-view="access"] {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url('../img/login.png') no-repeat center center
+}
+
+.content, .plain_content {
+  @extend .clearfix;
+  position: relative;
+  display: block;
+  margin-bottom: 35px
+}
+
+.content {
+  @include box-shadow(rgba(0,0,0,.3) 0 0 3px);
+  padding: 35px;
+  background: #fff
+}
+
+.plain_content {
+  float: left;
+  width: 790px
+}
+
+.sidebar {
+  float: right;
+  width: 210px;
+  margin-bottom: 35px
 }

@@ -7,12 +7,7 @@ config/grunt/node_modules/*
 
 bower_src/**/*
 
-dist/**/*.css
-dist/**/*.js
-dist/**/*.png
-dist/**/*.ico
+dist/**/*
 
 dist/img/sprite-*.png
-dist/img/sprite@2x-*.png
 dist/img/icons-*.png
-dist/img/icons@2x-*.png

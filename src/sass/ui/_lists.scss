@@ -1,0 +1,161 @@
+/*=
+    Index informations
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+.index_info {
+  margin: 0 0 20px 0
+}
+
+.index_info li {
+  color: $gray
+}
+
+.index_info span {
+  color: $charcoal
+}
+
+/*=
+    Control list
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+.control_list {
+  margin: 0 0 50px 0
+}
+
+.control_list li {
+  display: block;
+  line-height: 40px;
+  vertical-align: middle;
+  border-bottom: 1px solid $blue_gray_ultralight;
+
+  & > a:hover {
+    text-decoration: none
+  }
+}
+
+.control_list__empty {
+  border: 0
+}
+
+.control_list__empty:before {
+  width: 20px;
+  color: $yellow_fluorescent
+}
+
+.control_list__title:nth-child(1) {
+  .editing & {
+    display: none
+  }
+}
+
+.control_list__title:nth-child(2) {
+  display: none;
+
+  .editing & { 
+    display: inline-block 
+  }
+}
+
+.control_list__title form {
+  width: 300px
+}
+
+.control_list__title:after {
+  display: inline-block;
+  margin: 0 0 0 5px;
+  font-size: 1.8rem;
+  color: $blue_gray
+}
+
+.control_list__title:before {
+  width: 20px;
+  margin: -3px 0 0 0;
+}
+
+.control_list__title.icon_star:before {
+  color: $yellow_fluorescent
+}
+
+.control_list__title.icon_person:before {
+  color: $blue_gray
+}
+
+.control_list__actions {
+  @include transition(opacity .1s $easing);
+  display: inline-block;
+  opacity: .2;
+  margin: 0 0 0 20px;
+  padding: 0 0 0 20px;
+  border-left: 1px solid $blue_gray_ultralight;
+  vertical-align: inherit;
+  font-size: 1.2rem;
+  line-height: 20px;
+
+  span, a {
+    margin: 0 10px 0 0
+  }
+
+  a:hover {
+    text-decoration: none
+  }
+
+  a:after {
+    margin: 0 0 0 5px;
+    font-size: 1.6rem
+  }
+
+  .icon_resend:after {
+    color: $blue_gray_light
+  }
+
+  .icon_trash:after, .icon_x:after, .icon_revoke:after {
+    color: $red;
+    font-size: 1.4rem
+  }
+
+  .icon_star_after:after, .icon_person_after:after {
+    font-size: 1.3rem 
+  }
+
+  .icon_star_after:after {
+    color: $yellow_fluorescent
+  }
+
+  .icon_person_after:after {
+    color: $blue_gray_medium
+  }
+
+  .icon_trash:after {
+    margin-top: -2px
+  }
+
+  .icon_x:after {
+    font-size: 1.2rem
+  }
+
+  .icon_edit_simple:after, .icon_pencil:after {
+    font-size: 1.4rem
+  }
+
+  .icon_positive:after, .icon_pencil:after {
+    color: $blue_gray_light
+  }
+
+  .icon_negative:after, .icon_x:after {
+    color: $red
+  }  
+}
+
+
+
+.control_list li:hover {
+  /* background: $gray_ultralight; */
+
+  .control_list__actions {
+    opacity: 1
+  }  
+}

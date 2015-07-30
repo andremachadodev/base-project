@@ -4,3 +4,73 @@
     @version 1.0
     @author Andre Machado <andre@eov.ae>
 */
+.header {
+  display: block;
+  width: $app_width;
+  margin: 0 auto;
+  padding: 20px 0;
+  vertical-align: middle
+}
+
+.header a {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 30px
+}
+
+.header .icon_menu {
+  @include transition(all .2s $easing);
+  width: 40px;
+  font-size: 1.8rem;
+  color: $gray;
+  overflow: hidden
+}
+
+.nav_opened .header .icon_menu {
+  width: 0
+}
+
+.header__logo {
+  @extend .rpl;
+  width: 90px;
+  height: 30px;
+  margin: 0 0 0 -3px;
+  background: url('../svg/logo.svg') no-repeat 0 0
+}
+
+.header__links {
+  float: right
+}
+
+.header__links li {
+  display: inline-block;
+  margin: 0 20px 0 0;
+  vertical-align: middle
+}
+
+.header__links li:last-child {
+  margin: 0
+}
+
+.header__links li:before {
+  margin: 0 5px 0 0;
+  font-size: 1.6rem
+}
+
+.header__links a {
+  font-size: 1.2rem
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,19 +9,21 @@ $opacity_color: rgba(255, 255, 255, .3);
 .nav {
   position: absolute;
   z-index: 1;
-  width: 15%;
+  width: $nav_width;
   left: 0;
   top: 0;
   bottom: 0;
   padding: 70px 2.5%;
-  font-family: 'robotoregular';
-  background: $menu
+  overflow: hidden;
+  /* overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; */
+  background: $charcoal_light
 }
 
 .nav .icon_menu {
   position: absolute;
   right: 5%;
-  top: 30px;
+  top: 22px;
   font-size: 1.8rem;
   color: #fff
 }
@@ -103,7 +105,13 @@ $opacity_color: rgba(255, 255, 255, .3);
   font-size: 3rem
 }
 
+html.nav_opened {
+  overflow: hidden !important
+}
 
+html.nav_opened .wrap {
+  @include transform(translateX($nav_width))
+}
 
 
 

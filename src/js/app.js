@@ -4,7 +4,7 @@
   var constants = {
     "api": "../mockdata/",
     "views": "../views/",
-    "session_ns": "MTSSess"
+    "session_ns": "ProjectSess"
   };
 
   angular

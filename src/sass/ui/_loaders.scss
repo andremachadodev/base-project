@@ -6,8 +6,30 @@
 */
 .loader {
   position: absolute;
-  z-index: 10;
-  width: 40px;
-  height: 40px;
-  background: #32cd32 url('../img/loader.gif') no-repeat 0 0 
+  z-index: 99;
 }
+
+.view_loader {
+  @include border-radius(10px);
+  /* top: 300px;
+  left: 50%; */
+  margin: 0 0 0 -10px;
+  width: 20px;
+  height: 20px;
+  border: 15px solid #fff;
+  box-sizing: initial;
+  fill: $charcoal_light;
+  background: #fff
+}
+
+.button_loader {
+  width: 20px;
+  height: 20px
+}
+
+.charcoal_loader {
+  width: 20px;
+  height: 20px;
+  fill: $charcoal_light
+}
+

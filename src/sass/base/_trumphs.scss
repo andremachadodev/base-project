@@ -1,0 +1,49 @@
+/*=
+    Trumph rules
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+.rpl {
+  text-indent: -9999px;
+  font-size: 0
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.show {
+  @include transition(opacity .2s $easing);
+  display: block;
+  opacity: 1
+}
+
+.hide {
+  @include transition(opacity .2s $easing);
+  display: none;
+  opacity: 0
+}
+
+.stand_by {
+  @include transition(opacity .2s $easing);
+  opacity: .2
+}
+
+.fl {
+  float: left
+}
+
+.fr {
+  float: right
+}
+
+.both {
+  clear: both
+}

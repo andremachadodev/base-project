@@ -4,25 +4,32 @@ module.exports = function(grunt){
     pkg: grunt.file.readJSON('package.json'),
 
     paths: {
+      root: '../../',
       src: '../../src/',
       dist: '../../dist/',
-      bower: '../../bower_src/',
-      compass: '../compass/'
+      compass: '../compass/',
+      bower: '../../bower_src/'
     },
 
-		concat: {
+    concat: {
 			vendors: {
 				src: [
 					'<%= paths.bower %>angular/angular.min.js',
 					'<%= paths.bower %>angular-animate/angular-animate.min.js',
-					'<%= paths.bower %>angular-route/angular-route.min.js',
-					'<%= paths.bower %>angular-touch/angular-touch.min.js'
+					'<%= paths.bower %>angular-touch/angular-touch.min.js',
+          '<%= paths.bower %>angular-ui-router/release/angular-ui-router.min.js'
+          '<%= paths.bower %>tg-angular-validator/dist/angular-validator.js'
+					
 				],
 				dest: '<%= paths.dist %>js/vendors.js'
 			},
 			app: {
 				src: [
-					'<%= paths.src %>js/*.js'
+					'<%= paths.src %>js/app.js',
+					'<%= paths.src %>js/app-config.js',
+          '<%= paths.src %>js/filters/**/*.js',
+					'<%= paths.src %>js/helpers/**/*.js',				
+					'<%= paths.src %>js/directives/**/*.js'
 				],
 				dest: '<%= paths.dist %>js/app.js'
 			},
@@ -38,7 +45,7 @@ module.exports = function(grunt){
 	    beforeconcat: ['<%= paths.src %>js/**/*.js']
 	  },
 
-		uglify: {
+    uglify: {
 			options: {
 				mangle: false
 			},
@@ -109,7 +116,6 @@ module.exports = function(grunt){
 				}
 			}
 		}
-
   });
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -122,23 +128,12 @@ module.exports = function(grunt){
 
   // Run on start development
   grunt.registerTask(
-  	'default', [
-  		'compass',
-  		'jshint',
-	 		'concat',
-			'webfont',
-		  'favicons'
-    ]
+  	'default', ['compass', 'jshint', 'concat', /*'webfont',*/ 'favicons']
   );
 
   // Run on build
   grunt.registerTask(
-  	'prod', [
-	 		'jshint',
-	 		'compass',
-	 		'concat',
-	 		'uglify'
-	 	]
+  	'prod', ['jshint', 'compass', 'concat', 'uglify']
 	);
 };
 

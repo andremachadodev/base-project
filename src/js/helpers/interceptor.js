@@ -9,63 +9,64 @@
    * @author Andre Machado
    * @lastupdate Andre Machado
    */
-  var AuthInterceptor = ['$q', 'CONFIG', 'Storage', 'UserSession', 'Loader', function($q, CONFIG, Storage, UserSession, Loader){
+  var AuthInterceptor = ['$q', '$injector', 'CONFIG', 'Storage', 'UserSession', 'Loader', function($q, $injector, CONFIG, Storage, UserSession, Loader){
 
     var error_handler = function(type, rejection){
-      console.log('AuthInterceptor - '+ type +' Error: ', rejection);
+      //console.log('AuthInterceptor - '+ type +' Error: ', rejection);
 
       var is_service   = rejection.config ? rejection.config.url.indexOf(CONFIG.api) !=-1 : true,
-          status_error = rejection.status ? rejection.status : "000";
+          status_error = rejection.status ? rejection.status : "500";
 
-      console.log('Error Handler: ', is_service, status_error);
+      //console.log('Error Handler: ', is_service, status_error);
 
       if(is_service){
         // TODO: Decidir como será o feedback para esses casos
-        console.log('IS SERVICE');
-      }else{
-        console.log('IS NOT SERVICE', '/error/' + status_error);
+        console.log('SERVICE ERROR!', type, rejection);
 
-        //$state.go('/error', {status: status_error});
+        //console.log('IS SERVICE');
       }
     };
 
     return({
       request: function(config){
-        console.log(' ');
-        console.info('AuthInterceptor - Request: ', config.url);
-
-        UserSession.Check(function(){ $q.reject(config); });
+        //console.log(' ');
 
         var is_service = config.url.indexOf(CONFIG.api) !=-1;
 
         if(is_service){
-          config.useXDomain = true;
+          UserSession.CheckToken(function(){ $q.reject(config); });
 
-          delete config.headers['X-Requested-With'];
+          if( config.headers['Content-Type'] === 'content-file' ){
+            config.headers = {
+              'Content-Type': undefined
+            };
 
-          config.headers.Accept      = 'application/json, text/javascript';
-          config.headers.ContentType = 'application/json';
+          }else{
+            config.headers = {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json, text/javascript'
+            };
 
-          if(config.method == 'POST'){
-            config.headers.ContentType = "application/x-www-form-urlencoded";
           }
 
           var user_session = Storage.Get(CONFIG.session_ns);
 
           if( user_session && user_session.user_token ){
-            config.headers.Authorization = user_session.user_token_type +' '+ user_session.user_token;
+            config.headers.Token = user_session.user_token;
+
           }
 
-          Loader.Settings.className = 'loader_service';
+          console.info('AuthInterceptor - Request: ', config, config.url);
+
+          //Loader.Settings.className = 'loader_service';
 
         }else{
-          config.headers.ContentType = 'text/html';
-
-          Loader.Settings.className = 'loader_view';
-
+          UserSession.CheckArea(function(){ $q.reject(config); });
         }
 
         //Loader.Start();
+        
+        console.log(config.headers);
 
         return config;
       },
@@ -77,7 +78,7 @@
         return $q.reject(rejection);
       },
       response: function(response){
-        console.log('AuthInterceptor - Response: ', response);
+        //console.log('AuthInterceptor - Response: ', response);
 
         //Loader.End();
 
