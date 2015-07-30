@@ -35,7 +35,7 @@ It’s our choice for script dependencies manager, follow to install:
 
 <code>npm install -g bower</code>
 
-To start the new bower project and create a bower.json file (unusual in our context, because the bower.json are created will bring with repository)
+To start the new bower project and create a bower.json file (unusual in our context, because the bower.json are created in repository)
 
 <code>bower init</code>
 
