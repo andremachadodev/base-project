@@ -2,7 +2,7 @@
 
 1. [Start to use](https://github.com/andremachadodev/base-project#start-to-use)
 2. [Installing the third party tools](https://github.com/andremachadodev/base-project#installing-the-tools)
-3. [Installing the third party tools](https://github.com/andremachadodev/base-project#installing-the-tools)
+3. [Organizational directories](https://github.com/andremachadodev/base-project#organizational-directories)
 
 <a name="start-to-use"></a>
 ##Start to use
@@ -82,3 +82,8 @@ By default, use it:
 Our choice to boost the good and old css, compass is a sass framework, used to improve the work with css.
 
 Na nossa base de projeto-Compass vai disparado por Grunt e não há necessidade de chamada extra para executar
+
+<a name="organizational-directories"></a>
+##Organizational directories
+
+Soon...
