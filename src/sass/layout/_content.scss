@@ -1,0 +1,23 @@
+/*=
+    Wrap and content area modules
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+.wrap {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  background: #e1eaea;
+  @include transition(transform .2s $easing)
+}
+
+html.nav_opened {
+  overflow: hidden !important
+}
+
+html.nav_opened .wrap {
+  @include transform(translateX(20%))
+}

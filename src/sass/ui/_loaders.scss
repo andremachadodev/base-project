@@ -1,0 +1,13 @@
+/*=
+    Loader icons for ajax request and view changes
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+.loader {
+  position: absolute;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background: #32cd32 url('../img/loader.gif') no-repeat 0 0 
+}

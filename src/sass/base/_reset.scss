@@ -9,6 +9,7 @@ html {
 }
 
 body {
+    height: 100%;
     margin: 0;
 
     @media only screen and (max-width: 1024px){
@@ -98,8 +99,8 @@ th, td {
 	padding: 0;
 }
 
-/* ul, ol, li {
+ul, ol, li {
     margin: 0;
     padding: 0;
     list-style: none
-} */
+}
