@@ -17,7 +17,7 @@ module.exports = function(grunt){
 					'<%= paths.bower %>angular/angular.min.js',
 					'<%= paths.bower %>angular-animate/angular-animate.min.js',
 					'<%= paths.bower %>angular-touch/angular-touch.min.js',
-          '<%= paths.bower %>angular-ui-router/release/angular-ui-router.min.js'
+          '<%= paths.bower %>angular-ui-router/release/angular-ui-router.min.js',
           '<%= paths.bower %>tg-angular-validator/dist/angular-validator.js'
 					
 				],
@@ -127,6 +127,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Run on start development
+  // TODO: Stand-by webfont per hour, not bring good results in the moment
   grunt.registerTask(
   	'default', ['compass', 'jshint', 'concat', /*'webfont',*/ 'favicons']
   );

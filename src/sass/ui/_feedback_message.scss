@@ -1,0 +1,60 @@
+/*=
+    Feedback messages for callback actions
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+.feedback_message {
+  display: block;
+  clear: both;
+  text-align: center;
+
+  a, strong {
+    color: $rose
+  }
+
+  &:before {
+    display: block;
+    margin: 0 auto 10px auto;
+    font-size: 6rem
+  }
+}
+
+.feedback_message.icon_check:before {
+  color: $green
+}
+
+.feedback_message.icon_notification:before {
+  color: $yellow_fluorescent
+}
+
+.feedback_message.icon_x_before:before {
+  color: $red
+}
+
+.feedback_message__title {
+  display: block;
+  margin: 0 0 10px 0
+}
+
+/*=
+    Horizontal version
+
+    @version 1.0
+    @author Andre Machado <andre@eov.ae>
+*/
+.feedback_message__horizontal {
+  text-align: left;
+
+  &:before {
+    float: left;
+    margin: 0 20px 0 0;
+    font-size: 6rem
+  }
+}
+
+
+
+
+
+

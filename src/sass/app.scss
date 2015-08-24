@@ -24,28 +24,22 @@
 @import "base/html";
 @import "base/reset";
 @import "base/tipography";
-@import "base/icons";
 
 /* Ui */
+@import "ui/icons";
 @import "ui/loaders";
 @import "ui/form";
 @import "ui/buttons";
 @import "ui/headings";
 @import "ui/list";
 @import "ui/modal";
-@import "ui/feedback_message";
-@import "ui/chat";
-@import "ui/date_drops";
 @import "ui/breadcrumb";
-@import "ui/wrap_checking";
-@import "ui/pseudo_columns";
+@import "ui/grid";
 
 /* Components */
 /* @import "components/*"; */
 
 /* Vendors */
-@import "vendors/angular-datepicker";
-@import "vendors/angularjs-color-picker";
 
 /* Layout - Layout structure */
 @import "layout/content";
@@ -54,10 +48,7 @@
 @import "layout/footer";
 
 /* Layout - Sections */
-@import "layout/sections/access";
-@import "layout/sections/dashboard";
-@import "layout/sections/board_overview";
-@import "layout/sections/tasks";
+@import "layout/sections/page";
 
 /* Trumph classes */
 @import "base/trumphs";
