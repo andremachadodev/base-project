@@ -1,13 +1,7 @@
 .DS_Store
 
 config/**/*.log
-config/compass/.sass-cache
-config/grunt/.sass-cache
-config/grunt/node_modules/*
-
-bower_src/**/*
+config/.sass-cache
+config/node_modules/*
 
 dist/**/*
-
-dist/img/sprite-*.png
-dist/img/icons-*.png

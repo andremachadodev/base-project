@@ -11,9 +11,6 @@
 
 /* Helpers */
 @import "helpers/input_placeholder";
-@import "helpers/direction";
-@import "helpers/convert_size";
-@import "helpers/rpl";
 @import "helpers/breakpoints";
 
 /* Settings */
@@ -26,18 +23,6 @@
 @import "base/tipography";
 
 /* Ui */
-@import "ui/icons";
-@import "ui/loaders";
-@import "ui/form";
-@import "ui/buttons";
-@import "ui/headings";
-@import "ui/list";
-@import "ui/modal";
-@import "ui/breadcrumb";
-@import "ui/grid";
-
-/* Components */
-/* @import "components/*"; */
 
 /* Vendors */
 

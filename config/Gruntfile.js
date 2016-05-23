@@ -4,22 +4,33 @@ module.exports = function(grunt){
     pkg: grunt.file.readJSON('package.json'),
 
     paths: {
-      root: '../../',
-      src: '../../src/',
-      dist: '../../dist/',
-      compass: '../compass/',
-      bower: '../../bower_src/'
+      root: '../',
+      src: '../src/',
+      dist: '../dist/',
+      components: 'node_modules'
+    },
+
+    copy: {
+      font: {
+        expand: true,
+        cwd: '<%= paths.src %>/fonts/',
+        src: '*',
+        dest: '<%= paths.dist %>/fonts'
+      }
+    },
+
+    compass: {
+      dist: {
+        options: {
+          config: 'config.rb'
+        }
+      }
     },
 
     concat: {
 			vendors: {
 				src: [
-					'<%= paths.bower %>angular/angular.min.js',
-					'<%= paths.bower %>angular-animate/angular-animate.min.js',
-					'<%= paths.bower %>angular-touch/angular-touch.min.js',
-          '<%= paths.bower %>angular-ui-router/release/angular-ui-router.min.js',
-          '<%= paths.bower %>tg-angular-validator/dist/angular-validator.js'
-					
+					'<%= paths.components %>angular/angular.js'
 				],
 				dest: '<%= paths.dist %>js/vendors.js'
 			},
@@ -28,7 +39,7 @@ module.exports = function(grunt){
 					'<%= paths.src %>js/app.js',
 					'<%= paths.src %>js/app-config.js',
           '<%= paths.src %>js/filters/**/*.js',
-					'<%= paths.src %>js/helpers/**/*.js',				
+					'<%= paths.src %>js/helpers/**/*.js',
 					'<%= paths.src %>js/directives/**/*.js'
 				],
 				dest: '<%= paths.dist %>js/app.js'
@@ -66,40 +77,6 @@ module.exports = function(grunt){
 			}
 		},
 
-		compass: {
-			dist: {
-				options: {
-					config: '<%= paths.compass %>config.rb'
-				}
-			}
-		},
-
-		webfont: {
-		    icons: {
-		    	src: '<%= paths.src %>svg/*.svg',
-		        dest: '<%= paths.dist %>fonts/',
-		        destCss: '<%= paths.dist %>fonts/'
-		    }
-		},
-
-		favicons: {
-			options: {
-				appleTouchBackgroundColor: "none",
-				trueColor: false,
-				precomposed: true,
-				coast: true,
-				windowsTile: true,
-				tileBlackWhite: false,
-				tileColor: "#ffffff",
-				html: '<%= paths.dist %>favicons/index.html',
-				HTMLPrefix: "assets/favicons/"
-			},
-			icons: {
-				src: '<%= paths.src %>favicons/matrix.png',
-				dest: '<%= paths.dist %>favicons/'
-			}
-		},
-
 		watch: {
 			scripts: {
 				files: ['<%= paths.src %>js/**/*.js'],
@@ -121,25 +98,11 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-webfont');
-  grunt.loadNpmTasks('grunt-favicons');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  // Run on start development
-  // TODO: Stand-by webfont per hour, not bring good results in the moment
   grunt.registerTask(
-  	'default', ['compass', 'jshint', 'concat', /*'webfont',*/ 'favicons']
+  	'default', ['copy:font', 'compass', 'jshint', 'uglify', 'concat', 'watch']
   );
-
-  // Run on build
-  grunt.registerTask(
-  	'prod', ['jshint', 'compass', 'concat', 'uglify']
-	);
 };
-
-
-
-
-
-

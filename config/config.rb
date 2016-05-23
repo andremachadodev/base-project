@@ -2,12 +2,12 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-http_generated_images_path = "../../dist/img"
+http_generated_images_path = "../dist/img"
 
-css_dir = "../../dist/css"
-sass_dir = "../../src/sass"
-images_dir = "../../src/img"
-javascripts_dir = "../../src/js"
+css_dir = "../dist/css"
+sass_dir = "../src/sass"
+images_dir = "../src/img"
+javascripts_dir = "../src/js"
 
 force = false
 

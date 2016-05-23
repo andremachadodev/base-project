@@ -1,6 +1,30 @@
 /*=
-    Image replacement methods. A simple class and a mixin
+    A simple image replacement method
 
     @version 1.0
     @author Andre Machado <andre@eov.ae>
 */
+@import "compass/utilities/sprites/base";
+
+$sprite: sprite-map("sprite/*.png", $spacing: 2);
+$sprite2x: sprite-map("sprite2x/*.png", $spacing: 2);
+
+@mixin rpl($selector){
+  $width: image-width(sprite-file($sprite, $selector));
+  $height: image-height(sprite-file($sprite, $selector));
+
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0;
+  width: $width;
+  height: $height;
+  background: sprite-url($sprite) no-repeat sprite-position($sprite, $selector);
+
+  @include breakpoint(mobile){
+    width: image-width(sprite-file($sprite2x, $selector)) / 2;
+    height: image-height(sprite-file($sprite2x, $selector)) / 2;
+    background-image: sprite-url($sprite2x);
+    background-size: (image-width(sprite-path($sprite2x)) / 2) (image-height(sprite-path($sprite2x)) / 2);
+    background-position: round(nth(sprite-position($sprite2x, $selector), 1) / 2) round(nth(sprite-position($sprite2x, $selector), 2) / 2);
+  }
+}

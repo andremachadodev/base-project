@@ -9,14 +9,10 @@
   font-size: 0
 }
 
-.clearfix:before,
 .clearfix:after {
     content: " ";
+    clear: both;
     display: table
-}
-
-.clearfix:after {
-    clear: both
 }
 
 .show {
@@ -31,7 +27,7 @@
   opacity: 0
 }
 
-.stand_by {
+.stand-by {
   @include transition(opacity .2s $easing);
   opacity: .2
 }
