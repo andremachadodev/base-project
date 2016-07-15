@@ -2,7 +2,7 @@
     Trumph rules
 
     @version 1.0
-    @author Andre Machado <andre@eov.ae>
+    @author Andre Machado <andre.machado.dev@gmail.com>
 */
 .rpl {
   text-indent: -9999px;
@@ -16,19 +16,19 @@
 }
 
 .show {
-  @include transition(opacity .2s $easing);
+  transition: opacity .2s $easing;
   display: block;
   opacity: 1
 }
 
 .hide {
-  @include transition(opacity .2s $easing);
+  transition: opacity .2s $easing;
   display: none;
   opacity: 0
 }
 
 .stand-by {
-  @include transition(opacity .2s $easing);
+  transition: opacity .2s $easing;
   opacity: .2
 }
 

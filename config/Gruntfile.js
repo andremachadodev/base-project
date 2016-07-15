@@ -1,6 +1,10 @@
 module.exports = function(grunt){
-  grunt.initConfig({
+  var gifsicle = require('imagemin-gifsicle'),
+      jpegtran = require('imagemin-jpegtran'),
+      optipng  = require('imagemin-optipng'),
+      svgo     = require('imagemin-svgo');
 
+  grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     paths: {
@@ -13,17 +17,33 @@ module.exports = function(grunt){
     copy: {
       font: {
         expand: true,
-        cwd: '<%= paths.src %>/fonts/',
+        cwd: '<%= paths.src %>fonts/',
         src: '*',
-        dest: '<%= paths.dist %>/fonts'
+        dest: '<%= paths.dist %>fonts'
       }
     },
 
-    compass: {
+    sass: {
       dist: {
-        options: {
-          config: 'config.rb'
+        files: {
+          '<%= paths.dist %>css/app.css': '<%= paths.src %>sass/app.scss'
         }
+      }
+    },
+
+    imagemin: {
+      default: {
+        options: {
+          progressive: true,
+          interlaced: true,
+          optimizationLevel: 3
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= paths.src %>/img',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: '<%= paths.dist %>/img'
+        }]  
       }
     },
 
@@ -34,21 +54,17 @@ module.exports = function(grunt){
 				],
 				dest: '<%= paths.dist %>js/vendors.js'
 			},
+      modules: {
+        src: [
+          '<%= paths.src %>js/modules/**/*.js'
+        ],
+        dest: '<%= paths.dist %>js/modules.js'
+      },
 			app: {
 				src: [
-					'<%= paths.src %>js/app.js',
-					'<%= paths.src %>js/app-config.js',
-          '<%= paths.src %>js/filters/**/*.js',
-					'<%= paths.src %>js/helpers/**/*.js',
-					'<%= paths.src %>js/directives/**/*.js'
+					'<%= paths.src %>js/**/*.js'
 				],
 				dest: '<%= paths.dist %>js/app.js'
-			},
-			modules: {
-				src: [
-					'<%= paths.src %>js/modules/**/*.js'
-				],
-				dest: '<%= paths.dist %>js/modules.js'
 			}
 		},
 
@@ -87,7 +103,7 @@ module.exports = function(grunt){
 			},
 			styles: {
 				files: ['<%= paths.src %>sass/**/*.scss'],
-				tasks: ['compass'],
+				tasks: ['sass'],
 				options: {
 					spawn: false
 				}
@@ -98,11 +114,16 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
   grunt.registerTask(
-  	'default', ['copy:font', 'compass', 'jshint', 'uglify', 'concat', 'watch']
+  	'prod', ['copy:font', 'sass', 'jshint', 'uglify', 'imagemin', 'concat']
+  );
+
+  grunt.registerTask(
+    'dev', ['sass', 'copy:font', 'jshint', 'uglify', 'concat', 'watch']
   );
 };

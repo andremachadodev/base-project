@@ -2,6 +2,6 @@
 
 config/**/*.log
 config/.sass-cache
-config/node_modules/*
+config/node_modules/**/*
 
 dist/**/*

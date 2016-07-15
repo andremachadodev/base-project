@@ -1,14 +1,9 @@
 /*!
-    Project MTS
+    Project Inspirarte
 
     @version 1.0
-    @used http://the-mts.com/
-    @author Andre Machado <andre@eov.ae>
+    @author Andre Machado <andre.machado.dev@gmail.com>
 */
-
-/* Compass modules */
-@import "compass/css3";
-
 /* Helpers */
 @import "helpers/input_placeholder";
 @import "helpers/breakpoints";
@@ -22,18 +17,20 @@
 @import "base/reset";
 @import "base/tipography";
 
-/* Ui */
+/* Modules */
+//@import "modules/**/*";
 
 /* Vendors */
+//@import "vendors/**/*";
 
-/* Layout - Layout structure */
-@import "layout/content";
-@import "layout/nav";
+/* Layout - Structure */
 @import "layout/header";
+@import "layout/nav";
+@import "layout/content";
 @import "layout/footer";
 
 /* Layout - Sections */
-@import "layout/sections/page";
+@import "layout/sections/home";
 
 /* Trumph classes */
 @import "base/trumphs";
